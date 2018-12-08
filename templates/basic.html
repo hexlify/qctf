@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='style.css') }}">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="{{ url_for('.static', filename='script.js') }}"></script>
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="{{ url_for('.index') }}">
+            <h1 class="title">Memoir</h1>
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            {% if g.user %}
+                <a class="navbar-item" href="{{ url_for('.notes') }}">
+                    Дневник
+                </a>
+                <a class="navbar-item" href="{{ url_for('.note_add') }}">
+                    Новая запись
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="navbar-end">
+            {% if g.user %}
+                <div class="navbar-item">
+                    <span>
+                        <span class="icon is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        {{ g.user.username }}
+                    </span>
+                </div>
+                <div class="navbar-item">
+                    <a class="button" href="{{ url_for('.logout') }}">
+                        <strong>Выход</strong>
+                    </a>
+                </div>
+            {% else %}
+                <div class="navbar-item">
+                    <a class="button is-primary" href="{{ url_for('.login') }}">
+                        <strong>Войти</strong>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+{% block header %}{% endblock %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="section">
+            <div class="container">
+                {% for category, message in messages %}
+                    <div class="message is-{{ category }}">
+                        <div class="message-body">
+                            {{ message }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endwith %}
+{% block main %}{% endblock %}
+</body>
+</html>

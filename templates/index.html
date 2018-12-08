@@ -1,0 +1,39 @@
+{% extends "basic.html" %}
+{% block title %}Memoir{% endblock %}
+{% block main %}
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Добро пожаловать!
+                </h1>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="content">
+                <p>
+                    Любите путешествовать во времени? Сохраните свои
+                    воспоминания в
+                    нашем облачном сервисе Memoir!
+                </p>
+                <ul>
+                    <li>Надёжно</li>
+                    <li>Безопасно</li>
+                    <li>Доступно из любой точки пространственно-временного
+                        континуума
+                    </li>
+                </ul>
+            </div>
+            <div class="level">
+                <div class="level-left">
+                    <span class="level-item">
+                        <a class="button is-primary" href="{{ url_for('.login') }}">Войдите</a>
+                    </span>
+                    <span class="level-item">чтобы начать</span>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

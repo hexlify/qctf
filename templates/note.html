@@ -1,0 +1,28 @@
+{% extends "basic.html" %}
+{% block title %}{{ note.title }}{% endblock %}
+{% block main %}
+    <section class="section">
+        <div class="container">
+            <h2 class="title">{{ render_title(note) | safe }}</h2>
+            <div class="level">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <a class="button" href="../notes/{{ note.id }}/edit">
+                            <span class="icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </span>
+                            <span>Редактировать</span>
+                        </a>
+                    </div>
+                    <form method="POST" action="../notes/{{ note.id }}/remove">
+                        <div class="control">
+                            <input class="button" type="submit"
+                                   value="Удалить">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <pre class="note-text">{{ note.text }}</pre>
+        </div>
+    </section>
+{% endblock %}

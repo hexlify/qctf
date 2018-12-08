@@ -1,0 +1,60 @@
+{% extends "basic.html" %}
+{% block title %}Мои записи{% endblock %}
+{% block header %}
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Мои записи
+                </h1>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block main %}
+
+    {% for note in notes %}
+        <div class="section">
+            <div class="container">
+                <h5 class="title">
+                    <a href="{{ url_for('.note_view', note_id=note.id) }}">
+                        <i class="icon is-size-4 has-text-grey-light fas fa-sticky-note"></i> {{ render_title(note) | safe }}
+                    </a>
+                </h5>
+                <pre class="note-text">
+                    {{ note.text[:100].replace("\n", " ").replace("\r", " ") + ("..." if note.text[100:] else "") }}
+                </pre>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="section">
+        <div class="container">
+            <div class="level">
+                <a class="button is-primary" href="{{ url_for('.note_add') }}">Новая запись</a>
+            </div>
+            <div class="level">или</div>
+            <form action="{{ url_for('.note_import') }}" method="POST" enctype="multipart/form-data">
+                <div class="field is-grouped">
+                    <div class="control file has-name">
+                        <label class="file-label">
+                            <input class="file-input" type="file" name="file">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    Выберите файл
+                                </span>
+                            </span>
+                            <span class="file-name">...</span>
+                        </label>
+                    </div>
+                    <div class="control">
+                        <input class="button" type="submit" value="Загрузить">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

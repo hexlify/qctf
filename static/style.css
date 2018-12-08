@@ -1,0 +1,11 @@
+.note-text
+{
+    white-space: pre-line;
+    background-color: unset;
+    padding: 0;
+}
+
+.box-login
+{
+    padding: 30px 40px 60px;
+}

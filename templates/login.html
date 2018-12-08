@@ -1,0 +1,45 @@
+{% extends "basic.html" %}
+{% block title %}Авторизация{% endblock %}
+{% block main %}
+    <div class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-narrow">
+                    <div class="box box-login">
+                        <form method="POST">
+                            <div class="field">
+                                <label class="label">Логин</label>
+                                <div class="control has-icons-left">
+                                    <input class="input" type="text"
+                                           name="login"
+                                           placeholder="user">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Пароль</label>
+                                <div class="control has-icons-left">
+                                    <input class="input" type="password"
+                                           name="password"
+                                           placeholder="********">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-key"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-link">
+                                        Войти
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
