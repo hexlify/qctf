@@ -24,7 +24,7 @@ class DbModel:
         else:
             raise Exception('Not connected to db.')
 
-
+###
 @dataclass
 class User(DbModel):
     username: str
@@ -39,7 +39,7 @@ class Note(DbModel):
     text: str = ''
     tags: List[str] = field(default_factory=list)
     id: int = None
-
+###
 
 class DbQuery:
     def __init__(self, models):

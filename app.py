@@ -1,4 +1,5 @@
 import os
+import logging
 import sys
 import traceback
 from pathlib import Path
@@ -19,6 +20,12 @@ prefix = Blueprint(
 
 @prefix.before_request
 def before_request():
+    app.logger.debug(f'Form: {request.form}')
+    app.logger.debug(f'Args: {request.args}')
+    app.logger.debug(f'Cookies: {request.Cookies}')
+    app.logger.debug(f'Method: {request.method}')
+    app.logger.debug('\n')
+
     if 'uid' in session:
         g.user = db.query(User).filter(id=session['uid']).first()
 
@@ -144,6 +151,7 @@ def try_update_note(note):
 
 
 def main():
+    logging.basicConfig(filename='app.log', level=logging.DEBUG)
     secret_path = Path('./.flask_secret')
     try:
         secret_key = secret_path.read_bytes()
