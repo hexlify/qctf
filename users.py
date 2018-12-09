@@ -1,4 +1,4 @@
-# from hashlib import scrypt
+from hashlib import scrypt
 from binascii import b2a_hex
 
 from db import db, User
