@@ -70,8 +70,8 @@ def notes():
 @load_note
 @authorized
 def note_view(note_id):
-    # if g.note.owner_id != g.user.id:
-    #     return 'Доступ запрещён', 403
+    if g.note.owner_id != g.user.id:
+         return 'Доступ запрещён', 403
     return render_template('note.html', note=g.note, render_title=render_title)
 
 
